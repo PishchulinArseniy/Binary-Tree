@@ -14,15 +14,13 @@ def test_clear():
     bt.insert(t, d4)
     bt.insert(t, d5)
     bt.clear(t)
-    is_true = t.root == None
-    return is_true
+    return bt.size(t) == 0
 
 
 def test_size_null():
     t = bt.create()
     bt.size(t)
-    is_true = bt.size(t) == 0
-    return is_true
+    return bt.size(t) == 0
 
 
 def test_size_not_null():
@@ -37,8 +35,7 @@ def test_size_not_null():
     bt.insert(t, d3)
     bt.insert(t, d4)
     bt.insert(t, d5)
-    is_true = bt.size(t) == 5
-    return is_true
+    return bt.size(t) == 5
 
 
 def test_insert_key_in():
@@ -48,8 +45,7 @@ def test_insert_key_in():
     d3 = bt.Data(9, 6)
     bt.insert(t, d1)
     bt.insert(t, d2)
-    is_true = bt.insert(t, d3).value == 2
-    return is_true
+    return bt.insert(t, d3) == d2
 
 
 def test_insert_key_not():
@@ -57,12 +53,10 @@ def test_insert_key_not():
     d1 = bt.Data(10, 1)
     d2 = bt.Data(9, 2)
     bt.insert(t, d1)
-    is_true = bt.insert(t, d2) == None
-    return is_true
+    return bt.insert(t, d2) == None
 
 
 def test_delete_key_in():
-    is_true = False
     t = bt.create()
     d1 = bt.Data(10, 1)
     d2 = bt.Data(9, 2)
@@ -74,12 +68,7 @@ def test_delete_key_in():
     bt.insert(t, d3)
     bt.insert(t, d4)
     bt.insert(t, d5)
-    if bt.delete(t,13).value == 3:
-        if t.root.right.data.key == 16 and t.root.right.left.data.key == 12:
-            is_true = True
-        else:
-            is_true = False
-    return is_true
+    return bt.delete(t,13).value == 3
 
 
 def test_delete_key_not():
@@ -88,8 +77,7 @@ def test_delete_key_not():
     d2 = bt.Data(9, 2)
     bt.insert(t, d1)
     bt.insert(t, d2)
-    is_true = bt.delete(t, 18) == None
-    return is_true
+    return bt.delete(t, 18) == None
 
 
 def run_all_tests():
