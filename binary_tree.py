@@ -17,6 +17,14 @@ class Data:
         self.value = value
 
 
+def cmp_func(key1,key2):
+    if key1 > key2:
+        return 1
+    if key1 == key2:
+        return 0
+    if key1 < key2:
+        return -1
+
 def create():
     tree = Tree(None)
     return tree
@@ -49,15 +57,15 @@ def find(tree, key):
         return None
     a = tree.root
     while True:
-        if key > a.data.key:
+        if cmp_func( key , a.data.key ) == 1:
             if a.right is None:
                 return None
             a = a.right
-        if key < a.data.key:
+        if cmp_func( key , a.data.key ) == -1:
             if a.left is None:
                 return None
             a = a.left
-        if key == a.data.key:
+        if cmp_func( key , a.data.key ) == 0:
             return a.data.value
 
 
@@ -67,17 +75,17 @@ def insert(tree, data):
         return None
     a = tree.root
     while True:
-        if data.key > a.data.key:
+        if cmp_func( data.key , a.data.key ) == 1:
             if a.right is None:
                 a.right = Node(a,None,None,data)
                 return None
             a = a.right
-        if data.key < a.data.key:
+        if cmp_func( data.key , a.data.key ) == -1:
             if a.left is None:
                 a.left = Node(a,None,None,data)
                 return None
             a = a.left
-        if data.key == a.data.key:
+        if cmp_func( data.key , a.data.key ) == 0:
             ret = a.data
             a.data = data
             return ret
@@ -87,17 +95,17 @@ def delete(tree, key):
     a = tree.root
     d = 0
     while True:
-        if key > a.data.key:
+        if cmp_func( key , a.data.key ) == 1:
             if a.right is None:
                 return None
             a = a.right
             d = 1
-        if key < a.data.key:
+        if cmp_func( key , a.data.key ) == -1:
             if a.left is None:
                 return None
             a = a.left
             d = -1
-        if key == a.data.key:
+        if cmp_func( key , a.data.key ) == 0:
             if d == 1:
                 if a.right is None and a.left is None:
                     f = a.data

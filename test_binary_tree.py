@@ -45,7 +45,8 @@ def test_insert_key_in():
     d3 = bt.Data(9, 6)
     bt.insert(t, d1)
     bt.insert(t, d2)
-    return bt.insert(t, d3) == d2
+    g = bt.insert(t, d3)
+    return bt.cmp_func(g.key , d2.key) == 0 and bt.cmp_func(g.value , d2.value) == 0
 
 
 def test_insert_key_not():
@@ -53,7 +54,7 @@ def test_insert_key_not():
     d1 = bt.Data(10, 1)
     d2 = bt.Data(9, 2)
     bt.insert(t, d1)
-    return bt.insert(t, d2) == None
+    return bt.insert(t, d2) is None
 
 
 def test_delete_key_in():
@@ -68,7 +69,7 @@ def test_delete_key_in():
     bt.insert(t, d3)
     bt.insert(t, d4)
     bt.insert(t, d5)
-    return bt.delete(t,13).value == 3
+    return bt.cmp_func(bt.delete(t,13).value , 3) == 0
 
 
 def test_delete_key_not():
@@ -77,7 +78,7 @@ def test_delete_key_not():
     d2 = bt.Data(9, 2)
     bt.insert(t, d1)
     bt.insert(t, d2)
-    return bt.delete(t, 18) == None
+    return bt.delete(t, 18) is None
 
 
 def run_all_tests():
